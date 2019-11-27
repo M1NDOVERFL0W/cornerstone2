@@ -7,6 +7,9 @@ add_executable(cornerstone2 main.cpp)
 set(protobuf_BUILD_TESTS OFF)
 add_subdirectory(${CMAKE_SOURCE_DIR}/third-party/protobuf/cmake)
 
-target_include_directories(cornerstone2 PRIVATE ${CMAKE_SOURCE_DIR}/third-party/protobuf/src/google/protobuf)
+target_include_directories(cornerstone2 PRIVATE
+        ${CMAKE_SOURCE_DIR}/third-party/protobuf/src/google/protobuf
+        ${CMAKE_SOURCE_DIR}/third-party/cxxopts/include
+        )
 
 target_link_libraries(cornerstone2 -lprotobuf)
