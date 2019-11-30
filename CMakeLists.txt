@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.15)
 project(cornerstone2 C CXX)
 
+set(CMAKE_CXX_STANDARD 14)
+
 add_executable(cornerstone2 main.cpp
         ${CMAKE_SOURCE_DIR}/source/Config.cpp
         )
@@ -15,4 +17,7 @@ target_include_directories(cornerstone2 PRIVATE
         ${CMAKE_SOURCE_DIR}/include
         )
 
-target_link_libraries(cornerstone2 -lprotobuf)
+
+target_link_libraries(cornerstone2
+        libprotobuf # see third-party/protobuf/cmake/libprotobuf.cmake
+        )
