@@ -6,19 +6,19 @@
 class Config final
 {
 private:
-    std::string srcPath;
-    std::string dstPath;
-    std::string moduleName;
-    std::string precompiledHeader;
-    std::string wrappersPath;
-    std::string companyName;
+    const std::string srcPath;
+    const std::string dstPath;
+    const std::string moduleName;
+    const std::string precompiledHeader;
+    const std::string wrappersPath;
+    const std::string companyName;
 
     static Config* instance;
 
 public:
-    Config(const std::string& _srcPath, const std::string& _dstPath,
-            const std::string& _moduleName, const std::string& _precompiledHeader,
-            const std::string& _wrappersPath, const std::string& _conpanyName);
+    Config(std::string  _srcPath, std::string  _dstPath,
+            std::string  _moduleName, std::string  _precompiledHeader,
+            std::string  _wrappersPath, std::string  _companyName);
 
     Config* get();
 

@@ -1,22 +1,23 @@
 #include <stdexcept>
 #include <cstring>
+#include <utility>
 
 #include "Config.h"
 
 Config* Config::instance = nullptr;
 
-Config::Config(const std::string& _srcPath, const std::string& _dstPath, const std::string& _moduleName,
-               const std::string& _precompiledHeader, const std::string& _wrappersPath, const std::string& _conpanyName)
-{
-    srcPath = _srcPath;
-    dstPath = _dstPath;
-    moduleName = _moduleName;
-    precompiledHeader = _precompiledHeader;
-    wrappersPath = _wrappersPath;
-    companyName = _conpanyName;
+Config::Config(std::string  _srcPath, std::string  _dstPath, std::string  _moduleName,
+               std::string  _precompiledHeader, std::string  _wrappersPath, std::string  _companyName) :
+        srcPath(std::move(_srcPath)),
+        dstPath(std::move(_dstPath)),
+        moduleName(std::move(_moduleName)),
+        precompiledHeader(std::move(_precompiledHeader)),
+        wrappersPath(std::move(_wrappersPath)),
+        companyName(std::move(_companyName))
 
-    instance = this;
-}
+        {
+            instance = this;
+        }
 
 Config* Config::get()
 {
