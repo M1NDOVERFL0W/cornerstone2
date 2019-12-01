@@ -1,6 +1,8 @@
 #include <stdexcept>
 #include <utility>
 
+#include "google/protobuf/stubs/logging.h"
+
 #include "Config.h"
 
 Config* Config::instance = nullptr;
@@ -26,6 +28,8 @@ Config::~Config()
 
 void Config::validate()
 {
+    GOOGLE_CHECK_NOTNULL(instance);
+
     if (_srcPath.empty())
         throw std::runtime_error("srcPath must not be null or empty");
 
@@ -53,30 +57,42 @@ void Config::validate()
 
 const std::string& Config::srcPath()
 {
+    GOOGLE_CHECK_NOTNULL(instance);
+
     return instance->_srcPath;
 }
 
 const std::string& Config::dstPath()
 {
+    GOOGLE_CHECK_NOTNULL(instance);
+
     return instance->_dstPath;
 }
 
 const std::string& Config::moduleName()
 {
+    GOOGLE_CHECK_NOTNULL(instance);
+
     return instance->_moduleName;
 }
 
 const std::string& Config::precompiledHeader()
 {
+    GOOGLE_CHECK_NOTNULL(instance);
+
     return instance->_precompiledHeader;
 }
 
 const std::string &Config::wrappersPath()
 {
+    GOOGLE_CHECK_NOTNULL(instance);
+
     return instance->_wrappersPath;
 }
 
 const std::string& Config::companyName()
 {
+    GOOGLE_CHECK_NOTNULL(instance);
+
     return instance->_companyName;
 }
