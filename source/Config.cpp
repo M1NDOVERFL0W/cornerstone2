@@ -15,9 +15,15 @@ Config::Config(std::string  _srcPath, std::string  _dstPath, std::string  _modul
         wrappersPath(std::move(_wrappersPath)),
         companyName(std::move(_companyName))
 
-        {
-            instance = this;
-        }
+{
+    instance = this;
+}
+
+Config::~Config()
+{
+    if(instance)
+        free(instance);
+}
 
 Config* Config::get()
 {

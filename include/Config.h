@@ -22,6 +22,8 @@ public:
 
     Config* get();
 
+    ~Config();
+
     void validate();
 };
 
