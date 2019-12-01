@@ -1,19 +1,18 @@
 #include <stdexcept>
-#include <cstring>
 #include <utility>
 
 #include "Config.h"
 
 Config* Config::instance = nullptr;
 
-Config::Config(std::string  _srcPath, std::string  _dstPath, std::string  _moduleName,
-               std::string  _precompiledHeader, std::string  _wrappersPath, std::string  _companyName) :
-        srcPath(std::move(_srcPath)),
-        dstPath(std::move(_dstPath)),
-        moduleName(std::move(_moduleName)),
-        precompiledHeader(std::move(_precompiledHeader)),
-        wrappersPath(std::move(_wrappersPath)),
-        companyName(std::move(_companyName))
+Config::Config(std::string  __srcPath, std::string  __dstPath, std::string  __moduleName,
+               std::string  __precompiledHeader, std::string  __wrappersPath, std::string  _companyName) :
+        _srcPath(std::move(__srcPath)),
+        _dstPath(std::move(__dstPath)),
+        _moduleName(std::move(__moduleName)),
+        _precompiledHeader(std::move(__precompiledHeader)),
+        _wrappersPath(std::move(__wrappersPath)),
+        _companyName(std::move(_companyName))
 
 {
     instance = this;
@@ -25,37 +24,59 @@ Config::~Config()
         free(instance);
 }
 
-Config* Config::get()
-{
-    if(!instance)
-        throw std::runtime_error("Config has not been initialized!");
-
-    return instance;
-}
-
 void Config::validate()
 {
-    if (srcPath.empty())
+    if (_srcPath.empty())
         throw std::runtime_error("srcPath must not be null or empty");
 
-    if (dstPath.empty())
+    if (_dstPath.empty())
         throw std::runtime_error("dstPath must not be null or empty");
 
-    for (const char& ch : moduleName)
+    for (const char& ch : _moduleName)
     {
         if(!isdigit(ch) && !isalpha(ch))
-            throw std::runtime_error("module_name, which is '" + moduleName + "' must contain only digits or letters");
+            throw std::runtime_error("module_name, which is '" + _moduleName + "' must contain only digits or letters");
     }
 
-    if (wrappersPath.empty())
+    if (_wrappersPath.empty())
         throw std::runtime_error("wrappers_path must not be null or empty");
 
-    if (companyName.empty())
+    if (_companyName.empty())
         throw std::runtime_error("company_name must not be null or empty");
 
-    for (const char& ch : companyName)
+    for (const char& ch : _companyName)
     {
         if (ch == '|')
-            throw std::runtime_error("company_name, which is '" + companyName + "' mustn't contain '|'");
+            throw std::runtime_error("company_name, which is '" + _companyName + "' mustn't contain '|'");
     }
+}
+
+const std::string& Config::srcPath()
+{
+    return instance->_srcPath;
+}
+
+const std::string& Config::dstPath()
+{
+    return instance->_dstPath;
+}
+
+const std::string& Config::moduleName()
+{
+    return instance->_moduleName;
+}
+
+const std::string& Config::precompiledHeader()
+{
+    return instance->_precompiledHeader;
+}
+
+const std::string &Config::wrappersPath()
+{
+    return instance->_wrappersPath;
+}
+
+const std::string& Config::companyName()
+{
+    return instance->_companyName;
 }
