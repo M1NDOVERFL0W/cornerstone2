@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 add_executable(cornerstone2 main.cpp
         ${CMAKE_SOURCE_DIR}/source/Config.cpp
+        ${CMAKE_SOURCE_DIR}/source/Logger.cpp
         )
 
 # Disable tests for protobuf
