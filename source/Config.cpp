@@ -20,11 +20,7 @@ Config::Config(std::string  __srcPath, std::string  __dstPath, std::string  __mo
     instance = this;
 }
 
-Config::~Config()
-{
-    if(instance)
-        free(instance);
-}
+Config::~Config() = default;
 
 void Config::validate()
 {
