@@ -4,6 +4,7 @@
 #include "cxxopts.hpp"
 
 #include "Config.h"
+#include "Logger.h"
 
 int launch(int argc, char** argv)
 {
@@ -33,6 +34,8 @@ int launch(int argc, char** argv)
     const std::string precompiledHeader = cliOpts.count("precompiled_header") ? cliOpts["precompiled_header"].as<std::string>() : "";
     const std::string wrappersPath = cliOpts["wrappers_path"].as<std::string>();
     const std::string companyName = cliOpts["company_name"].as<std::string>();
+
+    initializeLogger(google::protobuf::LogLevel::LOGLEVEL_INFO);
 
     Config config(srcPath, dstPath, moduleName, precompiledHeader, wrappersPath, companyName);
     config.validate();

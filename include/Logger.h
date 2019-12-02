@@ -5,6 +5,6 @@
 #include <google/protobuf/stubs/logging.h>
 
 void cornerstoneLogHandler(google::protobuf::LogLevel level, const char* filename, int line, const std::string& message);
-void initializeLogger(google::protobuf::LogLevel level);
+void initializeLogger(const google::protobuf::LogLevel& level);
 
 #endif //CORNERSTONE2_LOGGER_H
